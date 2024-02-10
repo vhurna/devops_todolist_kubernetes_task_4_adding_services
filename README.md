@@ -32,24 +32,12 @@ Now you can browse the [API](http://localhost:8000/api/) or start on the [landin
 Create a kubernetes manifest for a pod which will containa ToDo app container:
 
 1. Fork this repository.
-1. Create a simple `Dockerfile` for the ToDo application
-7. Modify ToDo app code to add /health endpoint
-1. Modify ToDo app code to add /ready endpoint, which will have a 30 sec delay before starting to return status code 200
-1. Build your image and push to your personal Docker Hub account into the `todoapp` repository with the `3.0.0` tag (`todoapp:3.0.0`)
-1. All manifests should be located under `.infrastructure` folder
-1. Create a `manifest` which can be used to create a namespace (name it after your githab handle, i.e.: `ikulyk404`)
-```
-apiVersion: v1
-kind: Namespace
-metadata:
- name: ikulyk404
-```
-8. Creata a pod `manifest` which will start a `busyboxplus:curl` container in a cluster
-1. Create a pod `manifest` which will be using previously created image with tag `{yourname}/todoapp:3.0.0`
-1. ToDo app pod `manifest` should have a readiness probe configured
-1. ToDo app pod `manifest` should have a liveness probe configured
-1. `README.md` file should contain instructions on how to apply all manifests
-1. `README.md` file should contain instructions on how to test ToDo application using the `port-forward` command
-1. `README.md` file should contain instructions on how to test application using the
-`busyboxplus:curl` container
+1. Modify pod manifest to deploy a second same pod with a different name.
+1. Add labels to pods “app: todolist”
+1. Create a manifest for a ClusterIP service, which should balance traffic between two pods
+1. Create a manifest for a NodePort service, which should expose an application on a Node Level
+1. Set all env values for the container from pod’s manifest
+1. `README.md` should contain instructions on how to test an app by calling a ClusterIP service DNS from a busybox container
+1. `README.md` file should contain instructions on how to test ToDo application using the service `port-forward` command
+1. `README.md` should contain instruction on how to access an app using a NodePort Service
 1. Create PR with your changes and attach it for validation on a platform.
